@@ -9,8 +9,17 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
 
   //Get content
   $wifiRows = null;
+
+  //Table select for content data
+  $table = null;
+  if($brand === 'common_room'){
+    $table = 'copy_iteration2_common_room';
+  } else{
+    $table = 'copy_iteration2_yates';
+  }
+
   $email ="WIFI sign in 3 + 21 Days";
-  $initialQuery = "SELECT * FROM `copy_iteration1_all` WHERE `email` = '" . $email . "'";
+  $initialQuery = "SELECT * FROM " . $table . " WHERE `email` = '" . $email . "'";
   $rows = databaseQuery($initialQuery);
   foreach($rows as $key => $row){
     $wifiRows = $row;
@@ -60,9 +69,9 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   $voucherSearch = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
   $voucher = str_replace($voucherSearch, $voucherInstructions, $voucher);
   $voucher = str_replace('$vouchercode$', $wifiRows[11], $voucher);
-  $search = '/<!--valid_from_start-->\s*.*\s*.*\s*.*\s*.*\s*.*\s*.*<!--valid_from_end-->/';
+  $search = '/<!--valid_from_start-->\s*.*\s*.\s*.\s*.*\s*.*<!--valid_from_end-->/';
   $voucher = preg_replace($search, '', $voucher);
-  $search = '/<!--customer_start-->\s*.*\s*.*\s*.*\s*.*\s*.*\s*.*<!--customer_end-->/';
+  $search = '/<!--customer_start-->\s*.*\s*.\s*.\s*.*\s*.*<!--customer_end-->/';
   $voucher = preg_replace($search, '', $voucher);
   $voucher = marginBuilder($voucher);
 
@@ -88,7 +97,7 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   $terms = preg_replace('/<td valign="top">/', '<td valign="top" align="center" ' . $styleInsert . '>', $terms);
 
   //Insert content into template
-  $insert = $image . $largeSpacer . $heading . $emptySpacer . $textOne . $emptySpacer . $voucher . $emptySpacer . $textTwo . $largeSpacer;
+  $insert = $image . $largeSpacer . $heading . $emptySpacer . $textOne . $largeSpacer . $voucher . $largeSpacer . $textTwo . $largeSpacer;
   $search = "/<!-- User Content: Main Content Start -->\s*<!-- User Content: Main Content End -->/";
   $output = preg_replace($search, "<!-- User Content: Main Content Start -->" . $insert . "<!-- User Content: Main Content End -->", $template);
 

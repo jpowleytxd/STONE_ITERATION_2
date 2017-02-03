@@ -9,8 +9,17 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
 
   //Get content
   $welcomeRows = null;
+
+  //Table select for content data
+  $table = null;
+  if($brand === 'common_room'){
+    $table = 'copy_iteration2_common_room';
+  } else{
+    $table = 'copy_iteration2_yates';
+  }
+
   $email ="Welcome 3 + 21 Days";
-  $initialQuery = "SELECT * FROM `copy_iteration1_all` WHERE `email` = '" . $email . "'";
+  $initialQuery = "SELECT * FROM " . $table . " WHERE `email` = '" . $email . "'";
   $rows = databaseQuery($initialQuery);
   foreach($rows as $key => $row){
     $welcomeRows = $row;
@@ -59,9 +68,9 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   $voucherSearch = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
   $voucher = str_replace($voucherSearch, $voucherInstructions, $voucher);
   $voucher = str_replace('$vouchercode$', $welcomeRows[11], $voucher);
-  $search = '/<!--valid_from_start-->\s*.*\s*.*\s*.*\s*.*\s*.*\s*.*<!--valid_from_end-->/';
+  $search = '/<!--valid_from_start-->\s*.*\s*.\s*.\s*.*\s*.*<!--valid_from_end-->/';
   $voucher = preg_replace($search, '', $voucher);
-  $search = '/<!--customer_start-->\s*.*\s*.*\s*.*\s*.*\s*.*\s*.*<!--customer_end-->/';
+  $search = '/<!--customer_start-->\s*.*\s*.\s*.\s*.*\s*.*<!--customer_end-->/';
   $voucher = preg_replace($search, '', $voucher);
   $voucher = marginBuilder($voucher);
 
@@ -69,7 +78,7 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   $welcomeRows[8] = str_replace('"', '', $welcomeRows[8]);
   $textTwo = str_replace('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sodales vehicula tellus pellentesque malesuada. Integer malesuada magna felis, id rutrum leo volutpat eget. Morbi finibus et diam in placerat. Suspendisse magna enim, pharetra at erat vel, consequat facilisis mauris. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla est velit, lobortis eu tincidunt sit amet, semper et lorem.', $welcomeRows[8], $textTwo);
   $textTwo = preg_replace('/##(.+?)##/m', '<p>$1</p>', $textTwo);
-  $linkInsert = '<a href="http://stonegateemail.co.uk/$dynamic3$/website" style="color: ' . $textColor . '">Click Here</a>';
+  $linkInsert = '<a href="http://stonegateemail.co.uk/$dynamic3$/website" style="color: ' . $textColor . '">click here</a>';
   $textTwo = str_replace('click here', $linkInsert, $textTwo);
   $styleInsert = 'style="color: ' . $textColor . ';font-weight: bold; font-family: arial;"';
   $textTwo = str_replace('<td class="text" align="left" valign="0">', '<td class="text" align="center" valign="0" ' . $styleInsert . '>', $textTwo);
@@ -93,7 +102,7 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
 
   $append = "welcome_21_days_uk";
   $path = "pre_made";
-  $save = true;
+  $save = false;
 
   sendToFile($output, $path, $append, $brand, '.html', $save);
 

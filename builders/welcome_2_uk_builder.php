@@ -9,8 +9,17 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
 
   //Get content
   $welcomeRows = null;
+
+  //Table select for content data
+  $table = null;
+  if($brand === 'common_room'){
+    $table = 'copy_iteration2_common_room';
+  } else{
+    $table = 'copy_iteration2_yates';
+  }
+
   $email ="Welcome 2 + 7 Days";
-  $initialQuery = "SELECT * FROM `copy_iteration1_all` WHERE `email` = '" . $email . "'";
+  $initialQuery = "SELECT * FROM " . $table . " WHERE `email` = '" . $email . "'";
   $rows = databaseQuery($initialQuery);
   foreach($rows as $key => $row){
     $welcomeRows = $row;
@@ -38,7 +47,7 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   $image = str_replace('http://img2.email2inbox.co.uk/editor/fullwidth.jpg', getHeroImageURL($brand), $image);
 
   //Prep Promo Image
-  $url = getURL($brand, 'prosecco.png');
+  $url = getURL($brand, 'drink.png');
   $promo = str_replace('http://img2.email2inbox.co.uk/editor/fullwidth.jpg', $url, $promo);
   $promo = marginBuilder($promo);
 

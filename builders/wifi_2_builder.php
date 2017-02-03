@@ -10,8 +10,17 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
 
   //Get content
   $wifiRows = null;
+
+  //Table select for content data
+  $table = null;
+  if($brand === 'common_room'){
+    $table = 'copy_iteration2_common_room';
+  } else{
+    $table = 'copy_iteration2_yates';
+  }
+
   $email ="WIFI sign in 2 + 7 Days";
-  $initialQuery = "SELECT * FROM `copy_iteration1_all` WHERE `email` = '" . $email . "'";
+  $initialQuery = "SELECT * FROM " . $table . " WHERE `email` = '" . $email . "'";
   $rows = databaseQuery($initialQuery);
   foreach($rows as $key => $row){
     $wifiRows = $row;
@@ -57,7 +66,7 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   $textOne = str_replace('</tr>', '<td align="center" width="30"></td></tr>', $textOne);
 
   //Prep Promo Image
-  $url = getURL($brand, 'sourz.png');
+  $url = getURL($brand, 'shot.png');
   $promo = str_replace('http://img2.email2inbox.co.uk/editor/fullwidth.jpg', $url, $promo);
   $promo = marginBuilder($promo);
 

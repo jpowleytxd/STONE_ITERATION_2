@@ -60,7 +60,6 @@ $path = "inserts";
 $save = false;
 
 sendToFile($sql,$path, $append, $brand, '.sql', $save);
-
 print_r($sql);
 
  ?>

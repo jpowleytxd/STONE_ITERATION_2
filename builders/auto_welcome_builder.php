@@ -15,8 +15,16 @@ for($i = 1; $i <= 2; $i++){
       $email ="Auto Welcome  - Immediate (Scot)";
     }
 
+    //Table select for content data
+    $table = null;
+    if($brand === 'common_room'){
+      $table = 'copy_iteration2_common_room';
+    } else{
+      $table = 'copy_iteration2_yates';
+    }
+
     //Get copy data
-    $initialQuery = "SELECT * FROM `copy_iteration1_all` WHERE `email` = '" . $email . "'";
+    $initialQuery = "SELECT * FROM " . $table . " WHERE `email` = '" . $email . "'";
     $rows = databaseQuery($initialQuery);
     foreach($rows as $key => $row){
       $autoRows = $row;

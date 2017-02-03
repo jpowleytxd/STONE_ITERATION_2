@@ -9,8 +9,17 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
 
   //Get content
   $birthdayRows = null;
+
+  //Table select for content data
+  $table = null;
+  if($brand === 'common_room'){
+    $table = 'copy_iteration2_common_room';
+  } else{
+    $table = 'copy_iteration2_yates';
+  }
+
   $email ="Birthday -6 weeks";
-  $initialQuery = "SELECT * FROM `copy_iteration1_all` WHERE `email` = '" . $email . "'";
+  $initialQuery = "SELECT * FROM " . $table . " WHERE `email` = '" . $email . "'";
   $rows = databaseQuery($initialQuery);
   foreach($rows as $key => $row){
     $birthdayRows = $row;
@@ -55,14 +64,13 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
 
   //Prep Voucher
   $voucherInstructions = $birthdayRows[10];
-  var_dump($birthdayRows[10]);
   $voucher = file_get_contents('../sites/' . $brand . '/bespoke_blocks/' . $brand . '_voucher.html');
   $voucherSearch = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
   $voucher = str_replace($voucherSearch, $voucherInstructions, $voucher);
   $voucher = str_replace('$vouchercode$', $birthdayRows[11], $voucher);
-  $search = '/<!--valid_from_start-->\s*.*\s*.*\s*.*\s*.*\s*.*\s*.*<!--valid_from_end-->/';
+  $search = '/<!--valid_from_start-->\s*.*\s*.\s*.\s*.*\s*.*<!--valid_from_end-->/';
   $voucher = preg_replace($search, '', $voucher);
-  $search = '/<!--customer_start-->\s*.*\s*.*\s*.*\s*.*\s*.*\s*.*<!--customer_end-->/';
+  $search = '/<!--customer_start-->\s*.*\s*.\s*.\s*.*\s*.*<!--customer_end-->/';
   $voucher = preg_replace($search, '', $voucher);
   $voucher = marginBuilder($voucher);
 
