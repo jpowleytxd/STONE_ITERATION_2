@@ -29,7 +29,7 @@ foreach(glob('../sites/*/templates/*_branded.html') as $filename){
 
   //Prep All Text
   $basicText = file_get_contents('../sites/_defaults/text.html');
-  $styleInsert = 'style="color: ' . $textColor . ';font-weight: bold; font-family: arial;"';
+  $styleInsert = 'style="color: ' . $textColor . ';font-weight: normal; font-family: arial; line-height: 130%;"';
   $basicText = str_replace('<td class="text" align="left" valign="0">', '<td class="text" align="center" valign="0" ' . $styleInsert . '>', $basicText);
   $basicText = str_replace('<tr>', '<tr><td align="center" width="30"></td>', $basicText);
   $basicText = str_replace('</tr>', '<td align="center" width="30"></td></tr>', $basicText);
