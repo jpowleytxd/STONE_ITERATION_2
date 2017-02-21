@@ -2,6 +2,8 @@
 ini_set('max_execution_time', 3000);
 include 'common.php';
 
+$saveToFile = $_POST['saveStatus'];
+$returnString = null;
 
 foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   $template = file_get_contents($filename);
@@ -65,11 +67,13 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
 
   $append = "password_reset";
   $path = "pre_made";
-  $save = false;
+  $save = $saveToFile;
 
   sendToFile($output, $path, $append, $brand, '.html', $save);
 
-  print_r($output);
+  // print_r($output);
+  $returnString .= $output;
 }
 
+echo $returnString;
  ?>
