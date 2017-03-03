@@ -85,7 +85,7 @@ body{
 }
 
 #build-group{display:none; margin-top: calc((100vh - (15vw * 0.15 * 19)) / 2);}
-#insert-group{display:none; margin-top: calc((100vh - (15vw * 0.15 * 22)) / 2);}
+#insert-group{display:none; margin-top: calc((100vh - (15vw * 0.15 * 23)) / 2);}
 #update-group{display:none; margin-top: calc((100vh - (15vw * 0.15 * 8)) / 2);}
 #view-group{display:none; margin-top: calc((100vh - (15vw * 0.15 * 16)) / 2);}
 

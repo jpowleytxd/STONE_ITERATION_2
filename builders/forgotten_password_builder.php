@@ -60,7 +60,7 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   $textOne = str_replace('Click here', $link, $textOne);
 
   //Build email html
-  $insert = $image . $largeSpacer . $heading . $emptySpacer . $textOne . $largeSpacer;
+  $insert = $largeSpacer . $heading . $emptySpacer . $textOne . $largeSpacer;
 
   $search = "/<!-- User Content: Main Content Start -->\s*<!-- User Content: Main Content End -->/";
   $output = preg_replace($search, "<!-- User Content: Main Content Start -->" . $insert . "<!-- User Content: Main Content End -->", $template);
