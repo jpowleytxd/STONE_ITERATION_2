@@ -47,7 +47,7 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   //Prep Images
   $image = file_get_contents('../sites/_defaults/image.html');
   $promo = $image;
-  $image = str_replace('http://img2.email2inbox.co.uk/editor/fullwidth.jpg', getURL($brand, 'drink.png'), $image);
+  $image = str_replace('http://img2.email2inbox.co.uk/editor/fullwidth.jpg', getURL($brand, 'welcome_2_uk.png'), $image);
 
   //Prep Promo Image
   $url = getURL($brand, 'drink.png');
@@ -85,12 +85,22 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   $textTwo = str_replace('<tr>', '<tr><td align="center" width="30"></td>', $textTwo);
   $textTwo = str_replace('</tr>', '<td align="center" width="30"></td></tr>', $textTwo);
 
-  $insert = $image . $largeSpacer . $heading . $emptySpacer . $textOne . $largeSpacer . $lineSpacer . $emptySpacer . $textTwo . $largeSpacer;
+  preg_match('/"emailBackground": "(.*)"/', $template, $matches, PREG_OFFSET_CAPTURE);
+  $color = $matches[1][0];
+  $textColor = textColor($color);
+
+  $terms = termsBuilder($welcomeRows[9]);
+  $styleInsert = 'style="font-size: 11px; color: ' . $textColor . '"';
+  $terms = preg_replace('/<td valign="top">/', '<td valign="top" align="center" ' . $styleInsert . '>', $terms);
+
+  $insert = $image . $largeSpacer . $heading . $emptySpacer . $textOne . $emptySpacer . $lineSpacer . $emptySpacer . $textTwo . $largeSpacer;
 
   //Insert content into template
   $search = "/<!-- User Content: Main Content Start -->\s*<!-- User Content: Main Content End -->/";
   $output = preg_replace($search, "<!-- User Content: Main Content Start -->" . $insert . "<!-- User Content: Main Content End -->", $template);
 
+  $search = "/<!-- terms insert -->/";
+  $output = preg_replace($search, $terms, $output);
 
   $append = "welcome_7_days_uk";
   $path = "pre_made";

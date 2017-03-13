@@ -47,7 +47,7 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   //Prep Image
   $image = file_get_contents('../sites/_defaults/image.html');
   $promo = $image;
-  $image = str_replace('http://img2.email2inbox.co.uk/editor/fullwidth.jpg', getURL($brand, 'shot.png'), $image);
+  $image = str_replace('http://img2.email2inbox.co.uk/editor/fullwidth.jpg', getURL($brand, 'wifi_1.png'), $image);
 
   //Prep Spacers
   $emptySpacer = file_get_contents('../sites/_defaults/basic_spacer.html');
@@ -75,6 +75,10 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   //Prep Voucher
   $voucherInstructions = $wifiRows[10];
   $voucher = file_get_contents('../sites/' . $brand . '/bespoke_blocks/' . $brand . '_voucher.html');
+  if(strpos($filename, 'bosleys') !== false){
+    $voucherSearch = 'YOUR VOUCHER';
+    $voucher = str_replace($voucherSearch, 'YOUR FREE SHOT VOUCHER', $voucher);
+  }
   $voucherSearch = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
   $voucher = str_replace($voucherSearch, $voucherInstructions, $voucher);
   $voucher = marginBuilder($voucher);

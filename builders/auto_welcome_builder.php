@@ -87,7 +87,7 @@ for($i = 1; $i <= 2; $i++){
       $textTwo = str_replace('<tr>', '<tr><td align="center" width="30"></td>', $textTwo);
       $textTwo = str_replace('</tr>', '<td align="center" width="30"></td></tr>', $textTwo);
 
-      $insert = $image . $largeSpacer . $heading . $emptySpacer . $textOne . $largeSpacer . $lineSpacer . $largeSpacer . $textTwo . $largeSpacer;
+      $insert = $image . $largeSpacer . $heading . $emptySpacer . $textOne . $emptySpacer . $lineSpacer . $emptySpacer . $textTwo . $largeSpacer;
       $append = "auto_welcome_uk";
     } else if($i === 2){
       $insert = $image . $largeSpacer . $heading . $emptySpacer . $textOne . $largeSpacer;

@@ -46,7 +46,7 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   //Prep Images
   $image = file_get_contents('../sites/_defaults/image.html');
   $promo = $image;
-  $image = str_replace('http://img2.email2inbox.co.uk/editor/fullwidth.jpg', getHeroImageURL($brand), $image);
+  $image = str_replace('http://img2.email2inbox.co.uk/editor/fullwidth.jpg', getURL($brand, 'welcome_1_scot.png'), $image);
 
   //Prep Spacer
   $emptySpacer = file_get_contents('../sites/_defaults/basic_spacer.html');

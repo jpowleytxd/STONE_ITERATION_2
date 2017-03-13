@@ -6,8 +6,6 @@ $saveToFile = $_POST['saveStatus'];
 $returnString = null;
 
 //Retrieve generic blocks
-$imageBlock = file_get_contents("../sites/_defaults/image.html");
-$imageBlock = str_replace('http://img2.email2inbox.co.uk/editor/fullwidth.jpg', 'http://placehold.it/640x360', $imageBlock);
 $emptySpacer = file_get_contents('../sites/_defaults/basic_spacer.html');
 
 foreach(glob('../sites/*/templates/*_branded.html') as $filename){
@@ -17,6 +15,10 @@ foreach(glob('../sites/*/templates/*_branded.html') as $filename){
   preg_match('/"contentBackground": "(.*)"/', $template, $matches, PREG_OFFSET_CAPTURE);
   $color = $matches[1][0];
   $textColor = textColor($color);
+
+  //Prep Image
+  $imageBlock = file_get_contents("../sites/_defaults/image.html");
+  $imageBlock = str_replace('http://img2.email2inbox.co.uk/editor/fullwidth.jpg', getURL($brand, 'adhoc.png'), $imageBlock);
 
   //Prep Heading
   $heading = file_get_contents('../sites/' . $brand . '/bespoke_blocks/' . $brand . '_heading.html');

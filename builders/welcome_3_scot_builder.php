@@ -47,7 +47,7 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   //Prep Images
   $image = file_get_contents('../sites/_defaults/image.html');
   $promo = $image;
-  $image = str_replace('http://img2.email2inbox.co.uk/editor/fullwidth.jpg', getURL($brand, 'dessert.png'), $image);
+  $image = str_replace('http://img2.email2inbox.co.uk/editor/fullwidth.jpg', getURL($brand, 'welcome_3_scot.png'), $image);
 
   //Prep Promo Image
   $url = getURL($brand, 'dessert.png');

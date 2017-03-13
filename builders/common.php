@@ -86,7 +86,7 @@ function textColor($color){
 /*Retrieve URL for promo image*/
 /*........................*/
 function getURL($serverName, $image){
-  $urlStart = 'http://img2.email2inbox.co.uk/2017/stonegate/01/promo/';
+  $urlStart = 'http://img2.email2inbox.co.uk/2016/stonegate/templates/';
   $urlEnd = '/' . $image;
 
   if(($serverName === 'finnegans_wake') || ($serverName === 'rosies')){
