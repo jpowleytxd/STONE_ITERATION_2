@@ -5,7 +5,7 @@ include 'common.php';
 $saveToFile = $_POST['saveStatus'];
 
 $sql = null;
-foreach (glob("../pre_made/*/password_reset.html") as $filename) {
+foreach (glob("../pre_made/*/password_reset_brand.html") as $filename) {
   $temp = file_get_contents($filename);
 
   //Get brand and type names
@@ -87,7 +87,7 @@ foreach (glob("../pre_made/*/password_reset.html") as $filename) {
           values('" . '1222' . "', '1', '" . $temp . "', '', '" . $name . "', '', '" . date("Y-m-d H:i:s") . "', '" . date("Y-m-d H:i:s") . "', '1', '" . $subject . "', '', '" . date("Y-m-d H:i:s") . "', '" . $profileID . "', '', '', '', '', '', '', '', '', '0', '1', '" . $voucher . "', '" . $settings . "', '" . $mappings . "');\n";
 }
 
-$append = "forgotten_password_insert";
+$append = "forgotten_password_brand_insert";
 $path = "inserts";
 $save = $saveToFile;
 
