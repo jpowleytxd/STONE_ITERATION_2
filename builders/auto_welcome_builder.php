@@ -51,7 +51,13 @@ for($i = 1; $i <= 2; $i++){
 
     //Prep Images
     $image = file_get_contents('../sites/_defaults/image.html');
-    $image = str_replace('http://img2.email2inbox.co.uk/editor/fullwidth.jpg', getHeroImageURL($brand), $image);
+    $hero = '';
+    if($i === 1){
+      $hero = 'auto_welcome_uk.jpg';
+    } else if($i === 2){
+      $hero = 'auto_welcome_scot.jpg';
+    }
+    $image = str_replace('http://img2.email2inbox.co.uk/editor/fullwidth.jpg', getURL($brand, $hero), $image);
 
     //Prep Spacer
     $emptySpacer = file_get_contents('../sites/_defaults/basic_spacer.html');

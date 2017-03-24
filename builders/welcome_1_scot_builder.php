@@ -83,7 +83,11 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   $textTwo = str_replace('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sodales vehicula tellus pellentesque malesuada. Integer malesuada magna felis, id rutrum leo volutpat eget. Morbi finibus et diam in placerat. Suspendisse magna enim, pharetra at erat vel, consequat facilisis mauris. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla est velit, lobortis eu tincidunt sit amet, semper et lorem.', $welcomeRows[8], $textTwo);
   $styleInsert = 'style="Margin-top: 15px; Margin-bottom: 15px;"';
   $textTwo = preg_replace('/##(.+?)##/m', '<p ' . $styleInsert . '>$1</p>', $textTwo);
-  $linkInsert = '<a href="http://stonegateemail.co.uk/$dynamic3$/website" style="color: ' . $textColor . '; font-weight: bold; text-decoration: underline;"><span style="color: ' . $textColor . '; font-weight: bold; text-decoration: underline;">click here</span></a>';
+  $clickLink = 'http://stonegateemail.co.uk/$dynamic3$/website';
+  if($brand === 'common_room'){
+    $clickLink = 'http://stonegateemail.co.uk/$dynamic3$/party-enquiry';
+  }
+  $linkInsert = '<a href="' . $clickLink . '" style="color: ' . $textColor . '; font-weight: bold; text-decoration: underline;"><span style="color: ' . $textColor . '; font-weight: bold; text-decoration: underline;">click here</span></a>';
   $textTwo = str_replace('click here', $linkInsert, $textTwo);
   $styleInsert = 'style="color: ' . $textColor . ';font-weight: normal; font-family: arial;"';
   $textTwo = str_replace('<td class="text" align="left" valign="0">', '<td class="text" align="center" valign="0" ' . $styleInsert . '>', $textTwo);
