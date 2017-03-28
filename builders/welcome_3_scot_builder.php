@@ -80,7 +80,7 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   $textTwo = preg_replace('/##(.+?)##/m', '<p ' . $styleInsert . '>$1</p>', $textTwo);
   $clickLink = 'http://stonegateemail.co.uk/$dynamic3$/website';
   if($brand === 'common_room'){
-    $clickLink = 'http://stonegateemail.co.uk/$dynamic3$/party-enquiry';
+    $clickLink = 'http://stonegateemail.co.uk/$dynamic3$/partyenq';
   }
   $linkInsert = '<a href="' . $clickLink . '" style="color: ' . $textColor . '">click here</a>';
   $textTwo = str_replace('click here', $linkInsert, $textTwo);
