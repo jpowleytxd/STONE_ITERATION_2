@@ -14,8 +14,11 @@ foreach (glob("../pre_made/*/wifi_7_days.html") as $filename) {
   $type = $matches[2][0];
 
   //Remove comment tags
-  $temp = preg_replace('/\<!--.*?\-->/ms', '', $temp);
-  $temp = str_replace('WHAT\'S', 'WHAT&apos;S', $temp);
+  $temp = preg_replace('/\{.*?\}/ms', '', $temp);
+  $temp = preg_replace('/<!-- VenueStart -->/ms', '', $temp);
+  $temp = preg_replace('/<!-- VenueEnd -->/ms', '', $temp);
+  $temp = preg_replace('/<!-- BrandedStart -->/ms', '', $temp);
+  $temp = preg_replace('/<!-- BrandedEnd -->/ms', '', $temp);
   $temp = preg_replace('/\'/ms', '\\\'', $temp);
   $temp = removeWhiteSpace($temp);
 
