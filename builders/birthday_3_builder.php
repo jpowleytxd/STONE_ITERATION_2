@@ -60,6 +60,12 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   //Prep Text One
   $birthdayRows[5] = str_replace('"', '', $birthdayRows[5]);
   $textOne = str_replace('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sodales vehicula tellus pellentesque malesuada. Integer malesuada magna felis, id rutrum leo volutpat eget. Morbi finibus et diam in placerat. Suspendisse magna enim, pharetra at erat vel, consequat facilisis mauris. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla est velit, lobortis eu tincidunt sit amet, semper et lorem.', $birthdayRows[5], $textOne);
+  $clickLink = 'http://stonegateemail.co.uk/$dynamic3$/website';
+  if($brand === 'common_room'){
+    $clickLink = 'http://stonegateemail.co.uk/$dynamic3$/partyenq';
+  }
+  $linkInsert = '<a href="' . $clickLink . '" style="color: ' . $textColor . '; font-weight: bold; text-decoration: underline;"><span style="color: ' . $textColor . '; font-weight: bold; text-decoration: underline;">find out how we can make it your best ever</span></a>';
+  $textOne = str_replace('find out how you can make it your best ever', $linkInsert, $textOne);
   $styleInsert = 'style="Margin-top: 15px; Margin-bottom: 15px;"';
   $textOne = preg_replace('/##(.+?)##/m', '<p ' . $styleInsert . '>$1</p>', $textOne);
   $styleInsert = 'style="color: ' . $textColor . ';font-weight: normal; font-family: arial;"';
