@@ -66,7 +66,7 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   if($brand === 'common_room'){
     $clickLink = 'http://stonegateemail.co.uk/$dynamic3$/partyenq';
   }
-  $linkInsert = '<a href="' . $clickLink . '" style="color: ' . $textColor . '; font-weight: bold; text-decoration: underline;"><span style="color: ' . $textColor . '; font-weight: bold; text-decoration: underline;">find out how we can make it your best ever</span></a>';
+  $linkInsert = '<a href="' . $clickLink . '" style="color: ' . $textColor . '; font-weight: bold; text-decoration: underline;"><span style="color: ' . $textColor . '; font-weight: bold; text-decoration: underline;">Find out how we can make it your best ever</span></a>';
   $textOne = str_replace('Find out how we can make it your best ever', $linkInsert, $textOne);
   $styleInsert = 'style="Margin-top: 15px; Margin-bottom: 15px;"';
   $textOne = preg_replace('/##(.+?)##/m', '<p ' . $styleInsert . '>$1</p>', $textOne);

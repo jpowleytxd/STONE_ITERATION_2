@@ -113,6 +113,11 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
 
   //Insert content into template
   $insert = $image . $largeSpacer . $heading . $emptySpacer . $textOne . $largeSpacer . $voucher . $largeSpacer . $textTwo . $largeSpacer;
+
+  if(($brand === "yates") || ($brand === "bosleys")){
+    $insert = $image . $largeSpacer . $heading . $emptySpacer . $textOne . $textTwo . $largeSpacer;
+  }
+
   $search = "/<!-- User Content: Main Content Start -->\s*<!-- User Content: Main Content End -->/";
   $output = preg_replace($search, "<!-- User Content: Main Content Start -->" . $insert . "<!-- User Content: Main Content End -->", $template);
 
