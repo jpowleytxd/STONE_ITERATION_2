@@ -15,7 +15,7 @@ foreach (glob("../pre_made/*/adhoc.html") as $filename) {
   $temp = preg_replace('/<!-- VenueEnd -->/ms', '', $temp);
   $temp = preg_replace('/<!-- BrandedStart -->/ms', '', $temp);
   $temp = preg_replace('/<!-- BrandedEnd -->/ms', '', $temp);
-  $temp = preg_replace('/\'/ms', '\\\'', $temp);
+  // $temp = preg_replace('/\'/ms', '\\\'', $temp);
 
   //Base 64 encode template
   $temp = base64_encode($temp);
