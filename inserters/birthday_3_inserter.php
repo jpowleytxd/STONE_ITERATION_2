@@ -19,7 +19,7 @@ foreach (glob("../pre_made/*/birthday_6_weeks.html") as $filename) {
   $temp = preg_replace('/<!-- VenueEnd -->/ms', '', $temp);
   $temp = preg_replace('/<!-- BrandedStart -->/ms', '', $temp);
   $temp = preg_replace('/<!-- BrandedEnd -->/ms', '', $temp);
-  $temp = preg_replace('/\'/ms', '\\\'', $temp);
+  $temp = preg_replace('/\'/ms', '[[RSQUO]]', $temp);
   $temp = removeWhiteSpace($temp);
 
   //Brand to uppercase
@@ -52,7 +52,11 @@ foreach (glob("../pre_made/*/birthday_6_weeks.html") as $filename) {
   //Get Email content
   $email = 'Birthday -6 weeks';
   $birthdayRows = null;
-  $initialQuery = "SELECT * FROM `copy_iteration1_all` WHERE `email` = '" . $email . "'";
+  $initialQuery = "SELECT * FROM `copy_iteration2_yates` WHERE `email` = '" . $email . "'";
+  if($brand == 'common_room'){
+      $initialQuery = "SELECT * FROM `copy_iteration2_common_room` WHERE `email` = '" . $email . "'";
+  }
+
   $rows = databaseQuery($initialQuery);
   foreach($rows as $key => $row){
     $birthdayRows = $row;
@@ -65,6 +69,9 @@ foreach (glob("../pre_made/*/birthday_6_weeks.html") as $filename) {
     $subject = $birthdayRows[3];
     $preHeader = $birthdayRows[4];
     $voucher = '0';
+    if($brand !== 'common_room'){
+        $voucher = '1';
+    }
   }
 
   //Name declaration
@@ -76,7 +83,7 @@ foreach (glob("../pre_made/*/birthday_6_weeks.html") as $filename) {
 
   //Build SQL statements
   $sql .= "insert into `tbl_email_templates` (`template_account_id`, `template_status`, `template_html`, `template_text`, `template_title`, `template_description`, `template_added`, `template_modified`, `template_visible`, `template_subject`, `template_preview`, `template_last_used`, `template_sender_id`, `template_dynamic1_mapping`, `template_dynamic2_mapping`, `template_dynamic3_mapping`, `template_dynamic4_mapping`, `template_dynamic5_mapping`, `template_dynamic6_mapping`, `template_dynamic7_mapping`, `template_dynamic8_mapping`, `template_isTemp`, `template_visual_editor`, `template_has_voucher`, `template_ve_settings`, `template_ve_mappings`)
-          values('" . $accountID . "', '1', '" . $temp . "', '', '" . $name . "', '', '" . date("Y-m-d H:i:s") . "', '" . date("Y-m-d H:i:s") . "', '1', '" . $subject . "', '', '" . date("Y-m-d H:i:s") . "', '" . $profileID . "', '', '', '', '', '', '', '', '', '0', '1', '" . $voucher . "', '" . $settings . "', '" . $mappings . "');\n";
+          values('" . $accountID . "', '1', '" . $temp . "', '', '" . $name . "', '', '" . date("Y-m-d H:i:s") . "', '" . date("Y-m-d H:i:s") . "', '1', '" . preg_replace('/\'/ms', '[[RSQUO]]', $subject) . "', '', '" . date("Y-m-d H:i:s") . "', '" . $profileID . "', '', '', '', '', '', '', '', '', '0', '1', '" . $voucher . "', '" . $settings . "', '" . $mappings . "');\n";
 }
 
 $append = "birthday_3_insert";

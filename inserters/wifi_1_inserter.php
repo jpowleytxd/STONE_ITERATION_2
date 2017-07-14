@@ -19,7 +19,7 @@ foreach (glob("../pre_made/*/wifi_1_day.html") as $filename) {
   $temp = preg_replace('/<!-- VenueEnd -->/ms', '', $temp);
   $temp = preg_replace('/<!-- BrandedStart -->/ms', '', $temp);
   $temp = preg_replace('/<!-- BrandedEnd -->/ms', '', $temp);
-  $temp = preg_replace('/\'/ms', '\\\'', $temp);
+  $temp = preg_replace('/\'/ms', '[[RSQUO]]', $temp);
   $temp = removeWhiteSpace($temp);
 
   //Brand to uppercase
@@ -52,7 +52,11 @@ foreach (glob("../pre_made/*/wifi_1_day.html") as $filename) {
   //Get Email content
   $email = 'WIFI sign in 1 + 1 Day';
   $wifiRows = null;
-  $initialQuery = "SELECT * FROM `copy_iteration1_all` WHERE `email` = '" . $email . "'";
+  $initialQuery = "SELECT * FROM `copy_iteration2_yates` WHERE `email` = '" . $email . "'";
+  if($brand == 'common_room'){
+      $initialQuery = "SELECT * FROM `copy_iteration2_common_room` WHERE `email` = '" . $email . "'";
+  }
+  
   $rows = databaseQuery($initialQuery);
   foreach($rows as $key => $row){
     $wifiRows = $row;
@@ -64,7 +68,7 @@ foreach (glob("../pre_made/*/wifi_1_day.html") as $filename) {
   foreach($wifiRows as $key => $row){
     $subject = $wifiRows[3];
     $preHeader = $wifiRows[4];
-    $voucher = '0';
+    $voucher = '1';
   }
 
   //Name declaration

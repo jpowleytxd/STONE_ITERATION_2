@@ -56,6 +56,7 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   //Prep All Text
   $basicText = file_get_contents('../sites/_defaults/text.html');
   $textOne = $textTwo = $basicText;
+  $font = "Arial, 'Helvetica Neue', Helvetica, sans-serif";
 
   //Prep Text One
   $birthdayRows[5] = str_replace('"', '', $birthdayRows[5]);
@@ -68,7 +69,7 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   $textOne = str_replace('find out how you can make it your best ever', $linkInsert, $textOne);
   $styleInsert = 'style="Margin-top: 15px; Margin-bottom: 15px;"';
   $textOne = preg_replace('/##(.+?)##/m', '<p ' . $styleInsert . '>$1</p>', $textOne);
-  $styleInsert = 'style="color: ' . $textColor . ';font-weight: normal; font-family: arial;"';
+  $styleInsert = 'style="color: ' . $textColor . ';font-weight: normal; font-family: ' . $font . ';"';
   $textOne = str_replace('<td class="text" align="left" valign="0">', '<td class="text" align="center" valign="0" ' . $styleInsert . '>', $textOne);
   $textOne = str_replace('<tr>', '<tr><td align="center" width="30"></td>', $textOne);
   $textOne = str_replace('</tr>', '<td align="center" width="30"></td></tr>', $textOne);
@@ -96,7 +97,7 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   }
   $linkInsert = '<a href="' . $clickLink . '" style="color: ' . $textColor . '; font-weight: bold; text-decoration: underline;"><span style="color: ' . $textColor . '; font-weight: bold; text-decoration: underline;">click here</span></a>';
   $textTwo = str_replace('click here', $linkInsert, $textTwo);
-  $styleInsert = 'style="color: ' . $textColor . ';font-weight: normal; font-family: arial;"';
+  $styleInsert = 'style="color: ' . $textColor . ';font-weight: normal; font-family: ' . $font . ';"';
   $textTwo = str_replace('<td class="text" align="left" valign="0">', '<td class="text" align="center" valign="0" ' . $styleInsert . '>', $textTwo);
   $textTwo = str_replace('<tr>', '<tr><td align="center" width="30"></td>', $textTwo);
   $textTwo = str_replace('</tr>', '<td align="center" width="30"></td></tr>', $textTwo);

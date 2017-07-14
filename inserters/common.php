@@ -64,7 +64,7 @@ function databaseQuery($query){
 /*Campaigns+ Template settings*/
 /*........................*/
 function buildTemplateSettings($title, $preHeader, $subject, $brandID, $profileID){
-  $settings = '{"emailName":"' . $title . '","textOnly":"","preheader":"' . $preHeader . '","h": -1369038629,"subject":"' . $subject . '","template": "' . $brandID . '","senderProfile":' . $profileID . '}';
+  $settings = '{"emailName":"' . $title . '","textOnly":"","preheader":"' . preg_replace("/'/", "[[RSQUO]]", $preHeader) . '","h": -1369038629,"subject":"' . preg_replace("/'/", "[[RSQUO]]", $subject) . '","template": "' . $brandID . '","senderProfile":' . $profileID . '}';
 
   return $settings;
 }
