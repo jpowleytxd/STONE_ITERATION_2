@@ -17,7 +17,7 @@ foreach (glob("../sites/*/bespoke_blocks/*.html") as $filename){
 
     //Remove comment tags
     $temp = preg_replace('/\{.*?\}/ms', '', $temp);
-    $temp = preg_replace('/\<!--.*?\-->/ms', '', $temp);
+    // $temp = preg_replace('/\<!--.*?\-->/ms', '', $temp);
 
     //Base 64 encode template
     $temp = base64_encode($temp);

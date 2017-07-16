@@ -56,7 +56,7 @@ foreach (glob("../pre_made/*/welcome_21_days_uk.html") as $filename) {
   if($brand == 'common_room'){
       $initialQuery = "SELECT * FROM `copy_iteration2_common_room` WHERE `email` = '" . $email . "'";
   }
-  
+
   $rows = databaseQuery($initialQuery);
   foreach($rows as $key => $row){
     $welcomeRows = $row;
@@ -68,7 +68,7 @@ foreach (glob("../pre_made/*/welcome_21_days_uk.html") as $filename) {
   foreach($welcomeRows as $key => $row){
     $subject = $welcomeRows[3];
     $preHeader = $welcomeRows[4];
-    $voucher = '0';
+    $voucher = '1';
   }
 
   //Name declaration

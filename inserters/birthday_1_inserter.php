@@ -69,6 +69,9 @@ foreach (glob("../pre_made/*/birthday_1_week.html") as $filename) {
     $subject = $birthdayRows[3];
     $preHeader = $birthdayRows[4];
     $voucher = '0';
+    if($brand == 'common_room'){
+        $voucher = '1';
+    }
   }
 
   //Name declaration

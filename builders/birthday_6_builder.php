@@ -73,12 +73,9 @@ foreach(glob("../sites/*/templates/*_branded.html") as $filename){
   $voucherSearch = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
   $voucher = str_replace($voucherSearch, $voucherInstructions, $voucher);
 
-  if(($brand !== "yates") && ($brand !== "bosleys")){
-    $voucher = str_replace('$vouchercode$', $birthdayRows[11], $voucher);
-    $search = '/<!--valid_from_start-->\s*.*\s*.\s*.\s*.*\s*.*<!--valid_from_end-->/';
-    $voucher = preg_replace($search, '', $voucher);
-    $search = '/<!--customer_start-->\s*.*\s*.\s*.\s*.*\s*.*<!--customer_end-->/';
-    $voucher = preg_replace($search, '', $voucher);
+  if(($brand == "bosleys")){
+      $voucherSearch = 'YOUR VOUCHER';
+      $voucher = str_replace($voucherSearch, 'YOUR 10% OFF VOUCHER', $voucher);
   }
   $voucher = marginBuilder($voucher);
 

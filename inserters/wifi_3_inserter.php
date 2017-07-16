@@ -56,7 +56,7 @@ foreach (glob("../pre_made/*/wifi_21_days.html") as $filename) {
   if($brand == 'common_room'){
       $initialQuery = "SELECT * FROM `copy_iteration2_common_room` WHERE `email` = '" . $email . "'";
   }
-  
+
   $rows = databaseQuery($initialQuery);
   foreach($rows as $key => $row){
     $wifiRows = $row;
@@ -68,7 +68,7 @@ foreach (glob("../pre_made/*/wifi_21_days.html") as $filename) {
   foreach($wifiRows as $key => $row){
     $subject = $wifiRows[3];
     $preHeader = $wifiRows[4];
-    $voucher = '0';
+    $voucher = '1';
   }
 
   //Name declaration
